@@ -1,11 +1,25 @@
+import Hero from '@/components/landing/Hero'
+import HowItWorks from '@/components/landing/HowItWorks'
+import BrowseCategories from '@/components/landing/BrowseCategories'
+import LiveStats from '@/components/landing/LiveStats'
+import FeaturedGigs from '@/components/landing/FeaturedGigs'
+import WhyGigMatch from '@/components/landing/WhyGigMatch'
+import Testimonials from '@/components/landing/Testimonials'
+import Faq from '@/components/landing/Faq'
+import FinalCta from '@/components/landing/FinalCta'
+
 export default function HomePage() {
   return (
-    <div className="mx-auto max-w-3xl px-4 py-24 text-center">
-      <h1 className="font-display text-3xl font-semibold text-primary">GigMatch AI foundation is live</h1>
-      <p className="mt-4 text-neutral-soft">
-        This confirms the layout, theme, and providers are wired up correctly. The real landing page
-        (hero, features, stats, testimonials, and the rest of the 7+ sections) gets built in Step 2.
-      </p>
-    </div>
+    <>
+      <Hero />
+      <HowItWorks />
+      <BrowseCategories />
+      <LiveStats />
+      <FeaturedGigs />
+      <WhyGigMatch />
+      <Testimonials />
+      <Faq />
+      <FinalCta />
+    </>
   )
 }
