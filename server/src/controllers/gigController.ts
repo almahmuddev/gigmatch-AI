@@ -1,5 +1,6 @@
 import { Request, Response } from 'express'
 import Gig from '../models/Gig'
+import User from '../models/User'
 import { AuthRequest } from '../middleware/auth'
 
 export const getGigs = async (req: Request, res: Response) => {
@@ -89,6 +90,33 @@ export const createGig = async (req: AuthRequest, res: Response) => {
 export const getMyGigs = async (req: AuthRequest, res: Response) => {
   const gigs = await Gig.find({ postedBy: req.user._id }).sort({ createdAt: -1 })
   res.json({ gigs })
+}
+
+export const getStats = async (req: Request, res: Response) => {
+  const [totalGigs, totalFreelancers, categories, budgetAgg] = await Promise.all([
+    Gig.countDocuments({ status: 'open' }),
+    User.countDocuments(),
+    Gig.distinct('category'),
+    Gig.aggregate([{ $match: { status: 'open' } }, { $group: { _id: null, total: { $sum: '$budget' } } }]),
+  ])
+
+  res.json({
+    totalGigs,
+    totalFreelancers,
+    totalCategories: categories.length,
+    totalBudgetPosted: budgetAgg[0]?.total || 0,
+  })
+}
+
+export const getCategories = async (req: Request, res: Response) => {
+  // group by category so the landing page can show a real count per category, not a guess
+  const categories = await Gig.aggregate([
+    { $match: { status: 'open' } },
+    { $group: { _id: '$category', count: { $sum: 1 } } },
+    { $sort: { count: -1 } },
+  ])
+
+  res.json({ categories: categories.map((c) => ({ name: c._id, count: c.count })) })
 }
 
 export const deleteGig = async (req: AuthRequest, res: Response) => {
