@@ -20,7 +20,7 @@ Requirements" brief.
 | Auth | Custom JWT + Google Sign-In (verified server-side) |
 | AI provider | Groq (Llama 3.3 70B) via the OpenAI-compatible SDK |
 
-## AI features (2 of the required minimum)
+## AI features 
 
 1. **AI Smart Recommendation Engine** — matches a freelancer's skills/behavior to the
    best-fit open gigs, with filtering and refinement.
@@ -43,9 +43,9 @@ Each step is delivered as its own zip, building directly on the last one.
       model + CRUD with filter/sort/pagination, error handling, seed script) + frontend
       scaffolded (Next.js/TS/Tailwind, theme tokens, layout, Navbar/Footer shells, auth
       context, query provider, API client, types)
-- [ ] **Step 2 — Landing page**: hero + 7 real sections, using live data where it makes sense
-- [ ] **Step 3 — Auth pages**: login/register UI, demo login autofill, Google Sign-In button
-- [ ] **Step 4 — Explore page**: search, filter (category + budget), sort, pagination, skeleton loaders, card grid
+- [x] **Step 2 — Landing page**: hero + 7 real sections, using live data where it makes sense
+- [x] **Step 3 — Auth pages**: login/register UI, demo login autofill, Google Sign-In button
+- [x] **Step 4 — Explore page**: search, filter (category + budget), sort, pagination, skeleton loaders, card grid
 - [ ] **Step 5 — Details page**: full gig view, related gigs
 - [ ] **Step 6 — Protected Add Gig page** (`/items/add`)
 - [ ] **Step 7 — Protected Manage Gigs page** (`/items/manage`) + Recharts dashboard
