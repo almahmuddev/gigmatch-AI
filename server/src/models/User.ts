@@ -1,4 +1,4 @@
-import mongoose, { Schema, Document } from 'mongoose'
+import mongoose, { Schema, Document, Types } from 'mongoose'
 
 export interface IUser extends Document {
   name: string
@@ -8,6 +8,7 @@ export interface IUser extends Document {
   avatar?: string
   skills: string[]
   bio?: string
+  recentViews: Types.ObjectId[]
   createdAt: Date
 }
 
@@ -21,6 +22,9 @@ const userSchema = new Schema<IUser>(
     avatar: { type: String },
     skills: { type: [String], default: [] },
     bio: { type: String, default: '' },
+    // last ~15 gigs viewed while logged in - lets recommendations pick up on interest
+    // even before someone's declared skills catch up to what they're actually browsing
+    recentViews: { type: [Schema.Types.ObjectId], ref: 'Gig', default: [] },
   },
   { timestamps: true }
 )
