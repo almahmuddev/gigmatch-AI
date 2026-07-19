@@ -24,6 +24,11 @@ export default function Navbar() {
             Contact
           </Link>
           {user && (
+            <Link href="/recommendations" className="hover:text-secondary">
+              Recommended
+            </Link>
+          )}
+          {user && (
             <Link href="/items/add" className="hover:text-secondary">
               Post a Gig
             </Link>

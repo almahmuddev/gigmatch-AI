@@ -15,6 +15,7 @@ export default function RegisterPage() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
+  const [skills, setSkills] = useState('')
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
 
@@ -37,7 +38,11 @@ export default function RegisterPage() {
 
     setLoading(true)
     try {
-      await register(name, email, password)
+      const skillsArray = skills
+        .split(',')
+        .map((s) => s.trim())
+        .filter(Boolean)
+      await register(name, email, password, skillsArray)
       router.push('/explore')
     } catch (err: any) {
       setError(err?.response?.data?.message || 'could not create your account, try again')
@@ -91,6 +96,20 @@ export default function RegisterPage() {
             className="w-full rounded-lg border border-neutral-line px-3 py-2 text-sm focus:border-secondary focus:outline-none"
             placeholder="••••••••"
           />
+        </div>
+
+        <div>
+          <label className="mb-1 block text-sm font-medium text-neutral">
+            Your skills <span className="font-normal text-neutral-soft">(optional, comma-separated)</span>
+          </label>
+          <input
+            type="text"
+            value={skills}
+            onChange={(e) => setSkills(e.target.value)}
+            className="w-full rounded-lg border border-neutral-line px-3 py-2 text-sm focus:border-secondary focus:outline-none"
+            placeholder="React, Node.js, Figma"
+          />
+          <p className="mt-1 text-xs text-neutral-soft">This powers your AI-matched gig recommendations.</p>
         </div>
 
         {error && <p className="text-sm text-red-600">{error}</p>}

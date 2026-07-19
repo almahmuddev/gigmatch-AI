@@ -15,7 +15,7 @@ interface AuthContextType {
   user: AuthUser | null
   loading: boolean
   login: (email: string, password: string) => Promise<void>
-  register: (name: string, email: string, password: string) => Promise<void>
+  register: (name: string, email: string, password: string, skills?: string[]) => Promise<void>
   loginWithGoogle: (idToken: string) => Promise<void>
   logout: () => void
 }
@@ -50,8 +50,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     saveSession(res.data.token, res.data.user)
   }
 
-  const register = async (name: string, email: string, password: string) => {
-    const res = await api.post('/auth/register', { name, email, password })
+  const register = async (name: string, email: string, password: string, skills: string[] = []) => {
+    const res = await api.post('/auth/register', { name, email, password, skills })
     saveSession(res.data.token, res.data.user)
   }
 
