@@ -46,13 +46,13 @@ Each step is delivered as its own zip, building directly on the last one.
 - [x] **Step 2 — Landing page**: hero + 7 real sections, using live data where it makes sense
 - [x] **Step 3 — Auth pages**: login/register UI, demo login autofill, Google Sign-In button
 - [x] **Step 4 — Explore page**: search, filter (category + budget), sort, pagination, skeleton loaders, card grid
-- [ ] **Step 5 — Details page**: full gig view, related gigs
-- [ ] **Step 6 — Protected Add Gig page** (`/items/add`)
-- [ ] **Step 7 — Protected Manage Gigs page** (`/items/manage`) + Recharts dashboard
-- [ ] **Step 8 — AI Recommendation Engine**
-- [ ] **Step 9 — AI Chat Assistant**
-- [ ] **Step 10 — Additional pages**: About, Contact (working form), Help/FAQ
-- [ ] **Step 11 — Polish**: full responsive pass, SEO/meta, deploy config, final README
+- [x] **Step 5 — Details page**: full gig view, related gigs
+- [x] **Step 6 — Protected Add Gig page** (`/items/add`)
+- [x] **Step 7 — Protected Manage Gigs page** (`/items/manage`) + Recharts dashboard
+- [x] **Step 8 — AI Recommendation Engine**
+- [x] **Step 9 — AI Chat Assistant**
+- [x] **Step 10 — Additional pages**: About, Contact (working form), Help/FAQ
+- [x] **Step 11 — Polish**: full responsive pass, SEO/meta, deploy config, final README
 
 ## Project structure
 
