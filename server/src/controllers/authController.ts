@@ -16,7 +16,7 @@ const publicUser = (user: any) => ({
 })
 
 export const register = async (req: Request, res: Response) => {
-  const { name, email, password } = req.body
+  const { name, email, password, skills } = req.body
 
   if (!name || !email || !password) {
     return res.status(400).json({ message: 'name, email and password are all required' })
@@ -28,7 +28,12 @@ export const register = async (req: Request, res: Response) => {
   }
 
   const hashed = await bcrypt.hash(password, 10)
-  const user = await User.create({ name, email, password: hashed })
+  const user = await User.create({
+    name,
+    email,
+    password: hashed,
+    skills: Array.isArray(skills) ? skills : [],
+  })
   const token = generateToken(user._id.toString())
 
   res.status(201).json({ token, user: publicUser(user) })

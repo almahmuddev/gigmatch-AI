@@ -48,7 +48,7 @@ export const getGigs = async (req: Request, res: Response) => {
   })
 }
 
-export const getGigById = async (req: Request, res: Response) => {
+export const getGigById = async (req: AuthRequest, res: Response) => {
   const gig = await Gig.findByIdAndUpdate(req.params.id, { $inc: { views: 1 } }, { new: true }).populate(
     'postedBy',
     'name avatar email'
@@ -56,6 +56,14 @@ export const getGigById = async (req: Request, res: Response) => {
 
   if (!gig) {
     return res.status(404).json({ message: 'that gig does not exist, or may have been removed' })
+  }
+
+  if (req.user) {
+    // keep only the most recent 15 - this is the signal the recommendation engine
+    // uses to notice interests that aren't in the user's declared skills yet
+    await User.findByIdAndUpdate(req.user._id, {
+      $push: { recentViews: { $each: [gig._id], $slice: -15 } },
+    })
   }
 
   const related = await Gig.find({ category: gig.category, _id: { $ne: gig._id } }).limit(4)
