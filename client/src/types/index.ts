@@ -11,7 +11,7 @@ export interface Gig {
   imageUrl?: string
   status: 'open' | 'closed'
   views: number
-  postedBy: { _id: string; name: string; avatar?: string }
+  postedBy: { _id: string; name: string; avatar?: string; email?: string }
   createdAt: string
 }
 
