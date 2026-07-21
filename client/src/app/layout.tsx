@@ -5,6 +5,7 @@ import { AuthProvider } from '@/context/AuthContext'
 import { QueryProvider } from '@/components/providers/QueryProvider'
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
+import ChatWidget from '@/components/chat/ChatWidget'
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
 const fraunces = Fraunces({ subsets: ['latin'], variable: '--font-fraunces' })
@@ -24,6 +25,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <Navbar />
             <main className="min-h-screen">{children}</main>
             <Footer />
+            <ChatWidget />
           </AuthProvider>
         </QueryProvider>
       </body>
