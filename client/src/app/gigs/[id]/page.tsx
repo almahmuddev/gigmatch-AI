@@ -1,4 +1,5 @@
 import { notFound } from 'next/navigation'
+import { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Wallet, MapPin, Calendar, Eye } from 'lucide-react'
@@ -17,6 +18,16 @@ async function getGig(id: string): Promise<GigDetailsResponse | null> {
     return await res.json()
   } catch {
     return null
+  }
+}
+
+export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
+  const data = await getGig(params.id)
+  if (!data) return { title: 'Gig not found' }
+
+  return {
+    title: data.gig.title,
+    description: data.gig.shortDescription,
   }
 }
 

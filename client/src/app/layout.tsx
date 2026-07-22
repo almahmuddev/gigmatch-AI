@@ -11,7 +11,11 @@ const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
 const fraunces = Fraunces({ subsets: ['latin'], variable: '--font-fraunces' })
 
 export const metadata: Metadata = {
-  title: 'GigMatch AI - Find the freelance gigs that actually fit',
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'),
+  title: {
+    default: 'GigMatch AI - Find the freelance gigs that actually fit',
+    template: '%s | GigMatch AI',
+  },
   description:
     'An AI-powered freelance marketplace that matches freelancers with the gigs that fit their skills, not just a keyword search.',
 }

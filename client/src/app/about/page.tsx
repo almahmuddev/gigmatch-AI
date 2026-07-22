@@ -1,4 +1,10 @@
+import { Metadata } from 'next'
 import { Sparkles, Target, ShieldCheck } from 'lucide-react'
+
+export const metadata: Metadata = {
+  title: 'About',
+  description: 'What GigMatch AI is and how its AI-powered matching actually works.',
+}
 
 export default function AboutPage() {
   return (
